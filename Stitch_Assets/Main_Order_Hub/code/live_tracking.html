@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tracking Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a2a47",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#14181e",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-primary selection:bg-primary/10">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Header -->
+<header class="z-50 flex items-center bg-white/90 dark:bg-background-dark/90 backdrop-blur-md px-4 py-3 border-b border-primary/10">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="ml-2 text-lg font-bold tracking-tight text-primary dark:text-white">Tracking</h1>
+<div class="flex-1"></div>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-primary">more_vert</span>
+</button>
+</header>
+<!-- Main Content: Map View -->
+<main class="relative flex-1 overflow-hidden">
+<!-- Simulated Map Background -->
+<div class="absolute inset-0 bg-[#e5e7eb] dark:bg-[#1a1c1e]">
+<img alt="City map with delivery route" class="h-full w-full object-cover opacity-60 dark:opacity-30 grayscale-[0.2]" data-location="New York City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV6G4F1XZttQmvi2vi2x21UL5Ny_59kn-EaTTDVTe1n47EiZA8T64eWW401SYLS1ob7of-rg8nxbEhAhagewoDN9MWiYK8wUS7ckRze1GayEcqqeajepLlilYgF6fvcNHf_laThU4z3b5VBYnA9Qqn7FzZXUV9WOsGgxu7r3y1er8K9xMpDPFGCyQ0BS7LlMqVz_wvAgMiB4yBrIJGoRQ2ESX394l5E5mr1BDftjlD_Np5LDvziYAQkIHptkSKurwg5dB893fUUHw"/>
+<!-- Map SVG Overlay for Path -->
+<svg class="absolute inset-0 h-full w-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 400 600">
+<path class="opacity-60" d="M100,500 L150,400 L300,350 L320,200 L250,150" fill="none" stroke="#1a2a47" stroke-dasharray="8 4" stroke-width="4"></path>
+</svg>
+<!-- Vehicle Marker (Truck) -->
+<div class="absolute left-[310px] top-[210px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="relative flex items-center justify-center size-12 rounded-full bg-white shadow-xl border-2 border-primary">
+<span class="material-symbols-outlined text-primary text-2xl filled-icon">local_shipping</span>
+<!-- Pulsing effect -->
+<div class="absolute inset-0 rounded-full bg-primary/20 animate-ping"></div>
+</div>
+<div class="mt-2 px-2 py-1 rounded bg-primary text-[10px] font-bold text-white uppercase tracking-wider shadow-sm">
+                        In Motion
+                    </div>
+</div>
+<!-- Destination Marker -->
+<div class="absolute left-[250px] top-[150px] -translate-x-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-red-600 text-4xl filled-icon drop-shadow-md">location_on</span>
+</div>
+</div>
+<!-- Follow Button Overlay -->
+<div class="absolute bottom-6 right-6 z-20 flex flex-col gap-3">
+<button class="flex size-12 items-center justify-center rounded-xl bg-white dark:bg-background-dark shadow-lg border border-primary/10 text-primary dark:text-white hover:bg-gray-50 transition-all">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<button class="flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-white shadow-lg hover:bg-primary/90 transition-all group">
+<span class="material-symbols-outlined text-sm group-hover:rotate-45 transition-transform">navigation</span>
+<span class="text-sm font-bold tracking-wide">Follow</span>
+</button>
+</div>
+<!-- Map Controls -->
+<div class="absolute top-6 right-6 z-20 flex flex-col gap-1 overflow-hidden rounded-xl border border-primary/10 bg-white dark:bg-background-dark shadow-lg">
+<button class="flex size-10 items-center justify-center hover:bg-primary/5 border-b border-primary/5">
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<button class="flex size-10 items-center justify-center hover:bg-primary/5">
+<span class="material-symbols-outlined text-primary">remove</span>
+</button>
+</div>
+</main>
+<!-- Bottom Sheet Panel -->
+<section class="z-40 flex w-full flex-col bg-white dark:bg-background-dark rounded-t-[2rem] shadow-[0_-8px_30px_rgba(0,0,0,0.12)] border-t border-primary/5">
+<!-- Drag Handle -->
+<div class="flex w-full items-center justify-center py-3">
+<div class="h-1.5 w-12 rounded-full bg-primary/10"></div>
+</div>
+<div class="px-6 pb-10">
+<!-- Top Info -->
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="text-xs font-bold uppercase tracking-widest text-primary/50 dark:text-white/40">Order ID</span>
+<h2 class="text-xl font-bold text-primary dark:text-white">#A102</h2>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1.5 rounded-full bg-green-100 dark:bg-green-900/30 px-3 py-1 text-green-700 dark:text-green-400">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+</span>
+<span class="text-xs font-bold uppercase tracking-tight">In Transit</span>
+</div>
+</div>
+</div>
+<!-- Arrival Estimate -->
+<div class="mt-6 flex items-center justify-between rounded-2xl bg-primary/5 dark:bg-white/5 p-4 border border-primary/10">
+<div class="flex items-center gap-3">
+<div class="flex size-12 items-center justify-center rounded-xl bg-primary text-white">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-primary/60 dark:text-white/60">Estimated Arrival</span>
+<span class="text-lg font-bold text-primary dark:text-white">15 mins</span>
+</div>
+</div>
+<div class="h-10 w-px bg-primary/10"></div>
+<div class="flex flex-col items-end">
+<span class="text-sm font-medium text-primary/60 dark:text-white/60">Distance</span>
+<span class="text-lg font-bold text-primary dark:text-white">2.4 km</span>
+</div>
+</div>
+<!-- Delivery Courier -->
+<div class="mt-6 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Delivery driver portrait" class="size-12 rounded-full object-cover" data-alt="Close up of delivery driver portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaol5zp_2Dm0fUOjpJBZlq5H40Vn4xjGIfpXLiZaC9GH9PArKHJvZhhnZlHRaEXghqf1trdsQGejH7j6s7Os0trv4WQx8k6TAzHLCSFPFOi7tUQF6dy4-eaQmEXS3a3ix_re4XML-gby_Ssp0eTVPNIwz7oexK8MK1IKeYfOz7ltQh1U_swKDG1nzOqf_czleOkoa6C4kmGSiSPNKdqEKQj1SZ1d1TT75G90UqgeT3EuejUtrJESpC82MvAORJf8TjDCO2FVCbwoc"/>
+<div class="absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full bg-green-500 text-[10px] text-white ring-2 ring-white">
+<span class="material-symbols-outlined text-[12px] filled-icon">verified</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary dark:text-white">Robert Fox</span>
+<span class="text-xs text-primary/60 dark:text-white/60">Delivery Partner</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-xl">chat</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full bg-primary text-white shadow-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-xl">call</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Navigation (Partial view consistent with other screens) -->
+<nav class="flex border-t border-primary/5 bg-white dark:bg-background-dark px-4 pb-6 pt-2">
+<a class="flex flex-1 flex-col items-center gap-1 text-primary/40" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium uppercase tracking-wider">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-primary/40" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<p class="text-[10px] font-medium uppercase tracking-wider">Orders</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined filled-icon">distance</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Tracking</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-primary/40" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-medium uppercase tracking-wider">Profile</p>
+</a>
+</nav>
+</div>
+</body></html>

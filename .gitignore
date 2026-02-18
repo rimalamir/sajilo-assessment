@@ -1,0 +1,29 @@
+# node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# expo
+.expo/
+dist/
+web-build/
+
+# native build artifacts
+# only ignore if these are generated (Expo managed flow typically doesn't check these in)
+# ios/
+# android/
+
+# credentials/secrets
+*.jks
+*.p12
+*.key
+*.mobileprovision
+.env*
+
+# macos
+.DS_Store
+
+# lock files (optional to ignore, but usually kept)
+# package-lock.json
+# yarn.lock

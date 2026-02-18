@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a2a47",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#14181e",
+                        "warning-bg": "#fff3e0",
+                        "warning-text": "#e65100",
+                        "error-text": "#d32f2f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>Create Delivery Request</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-primary antialiased">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden max-w-md mx-auto shadow-xl">
+<!-- Header -->
+<header class="sticky top-0 z-10 flex items-center bg-white dark:bg-background-dark p-4 border-b border-gray-200 dark:border-gray-800">
+<button class="text-primary dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-primary dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">New Delivery</h1>
+</header>
+<!-- Offline Banner -->
+<div class="p-4 bg-white dark:bg-background-dark">
+<div class="flex items-center gap-3 rounded-lg bg-warning-bg p-4 border border-warning-text/10">
+<span class="material-symbols-outlined text-warning-text">cloud_off</span>
+<div class="flex flex-col">
+<p class="text-warning-text text-sm font-bold leading-tight">You're offline.</p>
+<p class="text-warning-text/80 text-xs font-medium">This request will be saved locally.</p>
+</div>
+</div>
+</div>
+<!-- Form Content -->
+<main class="flex-1 px-4 py-2 space-y-5 pb-40">
+<!-- Recipient Name -->
+<div class="flex flex-col gap-1.5">
+<label class="text-primary dark:text-white/80 text-sm font-semibold px-1">Recipient Name</label>
+<input class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3.5 text-primary dark:text-white placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Enter recipient's full name" type="text"/>
+</div>
+<!-- Delivery Address (With Validation Error) -->
+<div class="flex flex-col gap-1.5">
+<label class="text-primary dark:text-white/80 text-sm font-semibold px-1">Delivery Address</label>
+<textarea class="w-full rounded-lg border border-error-text bg-white dark:bg-gray-900 px-4 py-3.5 text-primary dark:text-white placeholder:text-gray-400 focus:ring-1 focus:ring-error-text outline-none min-h-[100px] resize-none transition-all" placeholder="Enter full street address"></textarea>
+<div class="flex items-center gap-1 px-1 mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-error-text">error</span>
+<p class="text-error-text text-xs font-medium">Address is required</p>
+</div>
+</div>
+<!-- Contact Number -->
+<div class="flex flex-col gap-1.5">
+<label class="text-primary dark:text-white/80 text-sm font-semibold px-1">Contact Number</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
+<span class="material-symbols-outlined text-xl">call</span>
+</div>
+<input class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 pl-11 pr-4 py-3.5 text-primary dark:text-white placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+<!-- Delivery Notes -->
+<div class="flex flex-col gap-1.5">
+<label class="text-primary dark:text-white/80 text-sm font-semibold px-1">Delivery Notes (Optional)</label>
+<textarea class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3.5 text-primary dark:text-white placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none min-h-[120px] resize-none transition-all" placeholder="Add any special instructions (e.g., gate code)"></textarea>
+</div>
+</main>
+<!-- Sticky Actions Footer -->
+<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white dark:bg-background-dark p-4 pb-8 border-t border-gray-100 dark:border-gray-800 space-y-3">
+<button class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform">
+                Save Request
+            </button>
+<button class="w-full text-gray-500 dark:text-gray-400 font-semibold py-2 text-sm hover:text-primary dark:hover:text-white transition-colors">
+                Cancel
+            </button>
+</footer>
+</div>
+</body></html>
